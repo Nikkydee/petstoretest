@@ -36,10 +36,10 @@ pipeline {
     post {
         always {
             junit {
+                testResults '/**/report/junit-result.xml'
                 // Assuming the Newman test results are in a specific format
                 // Adjust the path according to your project structure
                 allowEmptyResults(true)
-                testResults '/**/report/junit-result.xml'
             }
         }
         success {
