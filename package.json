@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "petstore-test": "newman run Petstore_environment_variable.postman_collection.json -e petenvironment.postman_environment.json -r htmlextra,cli --reporter-htmlextra-export report/petstore-report.html --reporter-htmlextra-title \"Petstore API Test Report\""
+    "petstore-test": "newman run Petstore_environment_variable.postman_collection.json -e petenvironment.postman_environment.json -r htmlextra,cli,junit --reporter-htmlextra-export report/petstore-report.html --reporter-htmlextra-title \"Petstore API Test Report\" --reporter-junit-export report/junit-result.xml"
   },
   "keywords": [],
   "author": "",
