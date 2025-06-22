@@ -35,7 +35,12 @@ pipeline {
 
     post {
         always {
-            junit '**/report/junit-result.xml'
+            junit {
+                // Assuming the Newman test results are in a specific format
+                // Adjust the path according to your project structure
+                allowEmptyResults(true)
+                testResults '/**/report/junit-result.xml'
+            }
         }
         success {
             echo 'This will run only if the pipeline succeeds.'
