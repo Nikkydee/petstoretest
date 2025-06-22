@@ -1,0 +1,17 @@
+{
+  "name": "pt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "petstore-test": "newman run Petstore_environment_variable.postman_collection.json -e petenvironment.postman_environment.json -r htmlextra,cli --reporter-htmlextra-export report/petstore-report.html --reporter-htmlextra-title \"Petstore API Test Report\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}

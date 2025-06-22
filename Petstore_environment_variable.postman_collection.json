@@ -1,0 +1,1335 @@
+{
+	"info": {
+		"_postman_id": "f94e21be-39a9-488e-8bfa-ee756b37f3ae",
+		"name": "Petstore_environment_variable",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7565931",
+		"_collection_link": "https://restless-rocket-9980.postman.co/workspace/Adenike~a058966b-a20d-4e2b-ad7a-ff3f2d8d5485/collection/7565931-f94e21be-39a9-488e-8bfa-ee756b37f3ae?action=share&source=collection_link&creator=7565931"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "+Ve || createUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate random values using Postman's faker-like dynamic variables",
+									"",
+									"let id = pm.variables.replaceIn('{{$randomInt}}');",
+									"pm.environment.set(\"id\", id);",
+									"",
+									"let firstname = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"pm.environment.set(\"firstname\", firstname);",
+									"",
+									"// let username = pm.variables.replaceIn('{{$randomUserName}}');",
+									"pm.environment.set(\"username\", firstname+id);",
+									"",
+									"let lastname = pm.variables.replaceIn('{{$randomLastName}}');",
+									"pm.environment.set(\"lastname\",lastname)",
+									"",
+									"",
+									"let phonenumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"pm.environment.set(\"phonenumber\",phonenumber)",
+									"",
+									"let password = pm.variables.replaceIn(\"Nikkie\");",
+									"pm.environment.set(\"password\",password)",
+									"",
+									"",
+									"",
+									"// let password = \"Nikkie\" + Math.floor(Math.random() * 1000); // Nikkie487",
+									"// pm.collectionVariables.set(\"password\", password);",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{id}},\n  \"username\": \"{{firstname}}{{id}}\",\n  \"firstName\": \"{{firstname}}\",\n  \"lastName\": \"{{lastname}}\",\n  \"email\": \"{{firstname}}@yopmail.com\",\n  \"password\": \"Nikkie\",\n  \"phone\": \"{{phonenumber}}\",\n  \"userStatus\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve || createUser-invaliddata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate random values using Postman's faker-like dynamic variables",
+									"",
+									"let id = pm.variables.replaceIn('{{$randomInt}}');",
+									"pm.collectionVariables.set(\"id\", id);",
+									"",
+									"let firstname = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"pm.collectionVariables.set(\"firstname\", firstname);",
+									"",
+									"// let username = pm.variables.replaceIn('{{$randomUserName}}');",
+									"pm.collectionVariables.set(\"username\", firstname+id);",
+									"",
+									"let lastname = pm.variables.replaceIn('{{$randomLastName}}');",
+									"pm.collectionVariables.set(\"lastname\",lastname)",
+									"",
+									"",
+									"let phonenumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber)",
+									"",
+									"let password = pm.variables.replaceIn(\"Nikkie\");",
+									"pm.collectionVariables.set(\"password\",password)",
+									"",
+									"",
+									"",
+									"// let password = \"Nikkie\" + Math.floor(Math.random() * 1000); // Nikkie487",
+									"// pm.collectionVariables.set(\"password\", password);",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{id}},\n  \"username\": \"^^&*&**\",\n  \"firstName\": \"$%^&^&&&\",\n  \"lastName\": \"#$$%%%\",\n  \"email\": \"{{firstname}}@yopmail.com\",\n  \"password\": \"Nikkie\",\n  \"phone\": \"{{phonenumber}}\",\n  \"userStatus\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve || createUser- emptydata",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate random values using Postman's faker-like dynamic variables",
+									"",
+									"let id = pm.variables.replaceIn('{{$randomInt}}');",
+									"pm.collectionVariables.set(\"id\", id);",
+									"",
+									"let firstname = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"pm.collectionVariables.set(\"firstname\", firstname);",
+									"",
+									"// let username = pm.variables.replaceIn('{{$randomUserName}}');",
+									"pm.collectionVariables.set(\"username\", firstname+id);",
+									"",
+									"let lastname = pm.variables.replaceIn('{{$randomLastName}}');",
+									"pm.collectionVariables.set(\"lastname\",lastname)",
+									"",
+									"",
+									"let phonenumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber)",
+									"",
+									"let password = pm.variables.replaceIn(\"Nikkie\");",
+									"pm.collectionVariables.set(\"password\",password)",
+									"",
+									"",
+									"",
+									"// let password = \"Nikkie\" + Math.floor(Math.random() * 1000); // Nikkie487",
+									"// pm.collectionVariables.set(\"password\", password);",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"\",\n  \"username\": \"\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"phone\": \"\",\n  \"userStatus\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve || createUser Duplicate Data",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate random values using Postman's faker-like dynamic variables",
+									"",
+									"let id = pm.variables.replaceIn('{{$randomInt}}');",
+									"pm.collectionVariables.set(\"id\", id);",
+									"",
+									"let firstname = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"pm.collectionVariables.set(\"firstname\", firstname);",
+									"",
+									"// let username = pm.variables.replaceIn('{{$randomUserName}}');",
+									"pm.collectionVariables.set(\"username\", firstname+id);",
+									"",
+									"let lastname = pm.variables.replaceIn('{{$randomLastName}}');",
+									"pm.collectionVariables.set(\"lastname\",lastname)",
+									"",
+									"",
+									"let phonenumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber)",
+									"",
+									"let password = pm.variables.replaceIn(\"Nikkie\");",
+									"pm.collectionVariables.set(\"password\",password)",
+									"",
+									"",
+									"",
+									"// let password = \"Nikkie\" + Math.floor(Math.random() * 1000); // Nikkie487",
+									"// pm.collectionVariables.set(\"password\", password);",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 3,\n  \"username\": \"{{firstname}}{{id}}\",\n  \"firstName\": \"{{firstname}}\",\n  \"lastName\": \"{{lastname}}\",\n  \"email\": \"{{firstname}}@yopmail.com\",\n  \"password\": \"Nikkie\",\n  \"phone\": \"{{phonenumber}}\",\n  \"userStatus\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve || createUserlists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n  \n  \"id\": 3,\n  \"username\": \"Adenike\",\n  \"firstName\": \"Nike\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"07068508707\",\n  \"userStatus\":1\n    },\n   {\n  \"id\":5,\n  \"username\": \"Adenike\",\n  \"firstName\": \"Nike\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"07068508707\",\n  \"userStatus\":1\n  }\n]\n  \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/createWithList",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"createWithList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve || createUserlists || invaliduserdetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 500\", function () {",
+									"\tpm.response.to.have.status(500);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n  \n  \"id\": &*&*((,\n  \"username\": \"Adenike\",\n  \"firstName\": \"**((*\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"07068508707\",\n  \"userStatus\":1\n    },\n   {\n  \"id\":5*()99,\n  \"username\": \"Adenike\",\n  \"firstName\": \"Nike\",\n  \"lastName\": \"*(()JJJJ\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"07068508707\",\n  \"userStatus\":1\n  }\n]\n  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/createWithList",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"createWithList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve || createUserwithArray",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n  \n  \"id\": 3,\n  \"username\": \"Adenike\",\n  \"firstName\": \"Nike\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"07068508707\",\n  \"userStatus\":1\n    },\n   {\n  \"id\":5,\n  \"username\": \"Adenike\",\n  \"firstName\": \"Nike\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"07068508707\",\n  \"userStatus\":1\n  }\n]\n  \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/createWithArray",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"createWithArray"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve || createUserwithInvalidData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n  \n  \"id\": 3,\n  \"username\": \"Ade%%^^^nike\",\n  \"firstName\": \"&&**\",\n  \"lastName\": \"Dou***glas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"0706III8508707\",\n  \"userStatus\":1\n    },\n   {\n  \"id\":5,\n  \"username\": \"Adenike\",\n  \"firstName\": \"Nike\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"string\",\n  \"phone\": \"07068508707\",\n  \"userStatus\":1\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/createWithArray",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"createWithArray"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve|| userlogin",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.property(\"code\");",
+									"",
+									"});",
+									"",
+									"pm.test(\"ResponseBody contains login user message\",()=> {",
+									"    pm.expect(jsonData.message).to.include(\"logged in user session\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve|| userlogin-invalidcredentials",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.property(\"code\");",
+									"",
+									"});",
+									"",
+									"pm.test(\"ResponseBody contains login user message\",()=> {",
+									"    pm.expect(jsonData.message).to.include(\"logged in user session\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"&*(((\",\n  \"password\": \"*((())\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve|| userlogin-emptycredentials",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.property(\"code\");",
+									"",
+									"});",
+									"",
+									"pm.test(\"ResponseBody contains login user message\",()=> {",
+									"    pm.expect(jsonData.message).to.include(\"logged in user session\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"\",\n  \"password\": \"\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/login",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve ||logoutUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/logout",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve || getUser-username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Use JSON if you're expecting a JSON response, not XML",
+									"const responseData = pm.response.json();",
+									"",
+									"// ✅ Test: Response code is 200",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"// ✅ Test: Response Content-Type is JSON",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"// ✅ Test: Validate schema (required keys exist)",
+									"pm.test(\"Validate the response schema for required fields\", function () {",
+									"    pm.expect(responseData).to.be.an(\"object\");",
+									"    pm.expect(responseData).to.have.all.keys(\"id\", \"username\", \"firstName\", \"lastName\", \"email\", \"password\", \"phone\", \"userStatus\");",
+									"});",
+									"",
+									"// ✅ Test: Fields are not empty or undefined",
+									"pm.test(\"Response data fields are not empty\", () => {",
+									"    pm.expect(responseData.id).to.not.be.undefined;",
+									"    pm.expect(responseData.username).to.not.be.empty;",
+									"    pm.expect(responseData.firstName).to.not.be.empty;",
+									"    pm.expect(responseData.lastName).to.not.be.empty;",
+									"    pm.expect(responseData.email).to.not.be.empty;",
+									"    pm.expect(responseData.password).to.not.be.empty;",
+									"    pm.expect(responseData.phone).to.not.be.empty;",
+									"    pm.expect(responseData.userStatus).to.not.be.undefined;",
+									"});",
+									"",
+									"// ✅ Test: Response time < 1000ms",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let username2= \"Adenike\"",
+									"pm.variables.set(\"username2\",username2)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/user/{{username2}}",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"{{username2}}"
+							],
+							"query": [
+								{
+									"key": "username2",
+									"value": "Adenike",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve || getUser-NonExistingUsername",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"  const responseData = pm.response.json();",
+									"",
+									"",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"Response status code is 404\", function () {",
+									"    pm.expect(pm.response.code).to.eql(404);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response contains an error code\", function () {",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('code').that.is.a('number');",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.all.keys('code', 'type', 'message');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let NonExistingusername= \"yu7898\"",
+									"pm.variables.set(\"NonExistingusername\",NonExistingusername)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/user/{{NonExistingusername}}",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"{{NonExistingusername}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve || updateUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData =pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"\tpm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\",()=> {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+									"});",
+									"",
+									"pm.test(\"ResponseBody to contain code\",()=> {",
+									"  pm.expect(jsonData).to.include.keys(\"code\");",
+									"",
+									"});",
+									"",
+									"pm.test(\"Response body contains message\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 3,\n  \"username\": \"polo\",\n  \"firstName\": \"{{lastname}}\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"{{password}}\",\n  \"phone\": \"07068508708\",\n  \"userStatus\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/{{username}}",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"{{username}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve || updateUserEmptyUSer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body contains message\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 3,\n  \"username\": \"polo\",\n  \"firstName\": \"{{lastname}}\",\n  \"lastName\": \"Douglas\",\n  \"email\": \"nikedouglas@gmail.com\",\n  \"password\": \"{{password}}\",\n  \"phone\": \"07068508708\",\n  \"userStatus\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASEURL}}/user/ ",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								" "
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "+Ve || deleteUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/user/{{username}}",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								"{{username}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "-Ve || deleteUser emptyusername",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 404\", function () {",
+									"    pm.expect(pm.response.code).to.eql(404);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASEURL}}/user/ ",
+							"host": [
+								"{{BASEURL}}"
+							],
+							"path": [
+								"user",
+								" "
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"",
+					"pm.environment.set(\"BASEURL\", \"https://petstore.swagger.io/v2\");",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://petstore.swagger.io/v2",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "id",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"value": "",
+			"disabled": true
+		},
+		{
+			"value": "",
+			"disabled": true
+		},
+		{
+			"value": "",
+			"disabled": true
+		},
+		{
+			"value": "",
+			"disabled": true
+		},
+		{
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "firstname",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "lastname",
+			"value": ""
+		},
+		{
+			"key": "phonenumber",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		}
+	]
+}
